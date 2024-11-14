@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}My title{% endblock %}
+
+{% block content %}
+    <h1>helllliiiioooo</h1>
+    <p>{{var}}</p>
+    <ul>
+        {% for item in mylist %}
+            {% if item == 2 %}
+                <li style="color: red;">{{item}}</li>
+            {% else %}
+                <li>{{item}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
