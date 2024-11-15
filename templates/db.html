@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} User Management {% endblock %}
+
+{% block content %}
+    <h1>{{ message }}</h1>
+    <h1> User Management Form </h1>
+    <form method="POST" action="{{ url_for('add_user') }}">
+        <input type="text" name="name" placeholder="Username" id="" required><br>
+        <input type="email" name="email" placeholder="Email" id="" required><br>
+        <input type="submit" value="Add User">
+    </form>
+
+    {% if users %}
+    <h2>User List</h2>
+    <ul>
+        {% for user in users %}
+        <li>
+            ID: {{ user.id }}, Name: {{ user.name }}, Email: {{ user.email }}
+            <form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No users found!</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <h1>session and cookie page</h1>
+    <a href="{{ url_for('set_session') }}">set session</a>
+    <br><br>
+    <a href="{{ url_for('get_session') }}">get session</a>
+    <br><br>
+    <a href="{{ url_for('clear_session') }}">clear_session</a>
+    <br><br>
+    <a href="{{ url_for('set_cookie') }}">set_cookie</a>
+    <br><br>
+    <a href="{{ url_for('get_cookie') }}">get_cookie</a>
+    <br><br>
+    <a href="{{ url_for('clear_cookie') }}">clear_cookiee</a>
+    <br><br>
+    <a href="{{ url_for('login') }}">login</a>
+    <br><br>
+    <h3>{{ message }}</h3>
+{% endblock %}

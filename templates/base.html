@@ -6,6 +6,13 @@
     <title>{% block title %} Any default title {% endblock %}</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <p>this will always be here</p>
     {% block content %} {% endblock %}
 </body>

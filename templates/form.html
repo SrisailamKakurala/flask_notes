@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} Login Form {% endblock %}
+
+{% block content %}
+    <h1> Login Form </h1>
+    <form method="POST" action={{ url_for('index') }}>
+        <input type="text" name="name" placeholder="Username" id=""><br>
+        <input type="password" name="pass" placeholder="Password" id=""><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <h1>Upload Form</h1>
+    <form action={{ url_for('file_uploads') }} method="POST" enctype="multipart/form-data">
+        <input type="file" name="filename" accept=".csv, text/csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required><br>
+        <input type="submit" value="Upload">
+    </form>
+
+    <h1>convert to xl</h1>
+    <form action={{ url_for('convert_excel') }} method="POST" enctype="multipart/form-data">
+        <input type="file" name="filename" accept=".csv, text/csv" required><br>
+        <input type="submit" value="Upload">
+    </form>
+
+    <h1>Send json request</h1>
+    <button id="btn">Post Json data</button>
+
+    <script>
+        const btn = document.getElementById('btn');
+        const jsonData = {name: 'ssl', greeting: 'yo'}
+
+        btn.addEventListener('click', () => {
+            fetch('{{ url_for("json_request") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            }
+            ).then((res) => res.json()).then(data => console.log(data)).catch(err => console.log(err))
+        })
+    </script>
+
+    <h1> DB Form </h1>
+    <form method="POST" action={{ url_for('add_user') }}>
+        <input type="text" name="name" placeholder="Username" id=""><br>
+        <input type="email" name="email" placeholder="email" id=""><br>
+        <input type="submit" value="SEND">
+    </form>
+{% endblock %}
