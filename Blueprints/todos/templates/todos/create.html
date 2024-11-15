@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>CREATE TODOs</h1>
+    <form method="POST" action={{ url_for('todos.create') }}>
+        <input type="text" name="title" placeholder="Title" id="" required><br>
+        <input type="text" name="description" placeholder="Description" id="" required><br>
+        <input type="checkbox" name="done" id="">
+        <input type="submit" value="Create">
+    </form>
+{% endblock %}

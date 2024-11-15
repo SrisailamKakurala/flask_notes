@@ -5,7 +5,11 @@ app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+
+
 db = SQLAlchemy(app)
+
+
 
 # Define a model
 class User(db.Model):
@@ -14,10 +18,14 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     
     
+    
+    
 @app.route('/')
 def index():
     users = User.query.all()
     return render_template('db.html', users=users)
+
+
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
@@ -28,6 +36,9 @@ def add_user():
     db.session.commit()
     return redirect(url_for('index'))
 
+
+
+
 @app.route('/delete_user/<int:user_id>', methods=['POST'])
 def delete_user(user_id):
     user = User.query.get(user_id)
@@ -35,6 +46,9 @@ def delete_user(user_id):
         db.session.delete(user)
         db.session.commit()
     return redirect(url_for('index'))
+
+
+
 
 if __name__ == '__main__':
     with app.app_context():
